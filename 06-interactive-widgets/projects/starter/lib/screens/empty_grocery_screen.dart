@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
   const EmptyGroceryScreen({Key? key}) : super(key: key);
@@ -25,8 +27,23 @@ class EmptyGroceryScreen extends StatelessWidget {
               'No Groceries',
               style: TextStyle(fontSize: 21.0),
             ),
-            // TODO 6: Add empty screen subtitle
-            // TODO 7: Add browse recipes button
+            const SizedBox(height: 16.0),
+            const Text(
+              'Shopping for ingredients?\n'
+              'Tap the + button to write them down!',
+              textAlign: TextAlign.center,
+            ),
+            MaterialButton(
+              textColor: Colors.white,
+              child: const Text('Browse Recipes'),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              color: Colors.green,
+              onPressed: () {
+                Provider.of<TabManager>(context, listen: false).goToRecipes();
+              },
+            ),
           ],
         ),
       ),
