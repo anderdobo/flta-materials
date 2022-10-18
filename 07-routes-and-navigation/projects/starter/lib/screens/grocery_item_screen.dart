@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import '../components/grocery_tile.dart';
 import '../models/models.dart';
+import 'package:go_router/go_router.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   final Function(GroceryItem) onCreate;
@@ -64,7 +65,12 @@ class GroceryItemScreenState extends State<GroceryItemScreen> {
                 widget.onCreate(groceryItem);
               }
 
-              // TODO: Navigate to home:ToBuy
+              context.goNamed(
+                'home',
+                params: {
+                  'tab': '${FooderlichTab.toBuy}',
+                },
+              );
             },
           )
         ],

@@ -73,7 +73,24 @@ class AppRouter {
               );
             },
           ),
-          // TODO: Add Profile Subroute
+          GoRoute(
+            name: 'profile',
+            // 1
+            path: 'profile',
+            builder: (context, state) {
+              // 2
+              final tab = int.tryParse(state.params['tab'] ?? '') ?? 0;
+              // 3
+              return ProfileScreen(
+                user: profileManager.getUser,
+                currentTab: tab,
+              );
+            },
+            // 4
+            routes: [
+              // TODO: Add Webview subroute
+            ],
+          ),
         ],
       ),
     ],
