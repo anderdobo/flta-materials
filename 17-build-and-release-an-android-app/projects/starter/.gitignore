@@ -48,7 +48,7 @@ app.*.map.json
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
 **/android/key.>properties
-**./recipes.jks
+**/recipes.jks
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
