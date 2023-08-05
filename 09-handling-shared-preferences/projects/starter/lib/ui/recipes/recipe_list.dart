@@ -111,7 +111,19 @@ class _RecipeListState extends State<RecipeList> {
         child: Row(
           children: [
             // Replace
-            const Icon(Icons.search),
+            IconButton(
+              icon: const Icon(Icons.search),
+              // 1
+              onPressed: () {
+                // 2
+                startSearch(searchTextController.text);
+                // 3
+                final currentFocus = FocusScope.of(context);
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+              },
+            ),
             const SizedBox(
               width: 6.0,
             ),
@@ -120,26 +132,48 @@ class _RecipeListState extends State<RecipeList> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Search'),
-                      autofocus: false,
-                      controller: searchTextController,
-                      onChanged: (query) => {
-                        if (query.length >= 3)
-                          {
-                            // Rebuild list
-                            setState(
-                              () {
-                                currentSearchList.clear();
-                                currentCount = 0;
-                                currentEndPosition = pageCount;
-                                currentStartPosition = 0;
-                              },
-                            )
-                          }
-                      },
+// 3
+                      child: TextField(
+                    decoration: const InputDecoration(
+                        border: InputBorder.none, hintText: 'Search'),
+                    autofocus: false,
+// 4
+                    textInputAction: TextInputAction.done,
+// 5
+                    onSubmitted: (value) {
+                      startSearch(searchTextController.text);
+                    },
+                    controller: searchTextController,
+                  )),
+// 6
+                  PopupMenuButton<String>(
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: lightGrey,
                     ),
+// 7
+                    onSelected: (String value) {
+                      searchTextController.text = value;
+                      startSearch(searchTextController.text);
+                    },
+                    itemBuilder: (BuildContext context) {
+// 8
+                      return previousSearches
+                          .map<CustomDropdownMenuItem<String>>((String value) {
+                        return CustomDropdownMenuItem<String>(
+                          text: value,
+                          value: value,
+                          callback: () {
+                            setState(() {
+// 9
+                              previousSearches.remove(value);
+                              savePreviousSearches();
+                              Navigator.pop(context);
+                            });
+                          },
+                        );
+                      }).toList();
+                    },
                   ),
                 ],
               ),
@@ -151,7 +185,25 @@ class _RecipeListState extends State<RecipeList> {
     );
   }
 
-  // TODO: Add startSearch
+  void startSearch(String value) {
+    // 1
+    setState(() {
+      // 2
+      currentSearchList.clear();
+      currentCount = 0;
+      currentEndPosition = pageCount;
+      currentStartPosition = 0;
+      hasMore = true;
+      value = value.trim();
+      // 3
+      if (!previousSearches.contains(value)) {
+        // 4
+        previousSearches.add(value);
+        // 5
+        savePreviousSearches();
+      }
+    });
+  }
 
   // TODO: Replace method
   Widget _buildRecipeLoader(BuildContext context) {
