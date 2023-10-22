@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../colors.dart';
 
 class RecipeDetails extends StatelessWidget {
-  // TODO: Replace with new constructor
   const RecipeDetails({Key? key}) : super(key: key);
 
   @override
@@ -19,9 +18,9 @@ class RecipeDetails extends StatelessWidget {
               children: <Widget>[
                 Stack(
                   children: [
-                    // Comment out Align()
                     Align(
                       alignment: Alignment.topCenter,
+                      // TODO 1
                       child: Image.asset(
                         'assets/images/pizza_w700.png',
                         height: 200,
@@ -32,9 +31,7 @@ class RecipeDetails extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: Container(
                         decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: shim,
-                        ),
+                            shape: BoxShape.circle, color: shim),
                         child: const BackButton(
                           color: Colors.white,
                         ),
@@ -45,27 +42,23 @@ class RecipeDetails extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                // TODO: Replace hardcoded Chicken Vesuvio
                 const Padding(
                   padding: EdgeInsets.only(left: 16.0),
                   child: Text(
+                    // TODO 2
                     'Chicken Vesuvio',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
                 const SizedBox(
                   height: 16,
                 ),
-                // TODO: Replace hardcoded calories
                 const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Chip(
-                    label: Text('16CAL'),
-                  ),
-                ),
+                    padding: EdgeInsets.only(left: 16.0),
+                    child: Chip(
+                      // TODO 3
+                      label: Text('16CAL'),
+                    )),
                 const SizedBox(
                   height: 16,
                 ),
@@ -74,11 +67,10 @@ class RecipeDetails extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: green,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
+                          borderRadius: BorderRadius.circular(16.0)),
                     ),
                     onPressed: () {
-                      // TODO: Add insertRecipe here
+                      // TODO 4
                       Navigator.pop(context);
                     },
                     icon: SvgPicture.asset(

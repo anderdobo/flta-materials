@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -9,10 +10,10 @@ class MyRecipesList extends StatefulWidget {
 }
 
 class _MyRecipesListState extends State<MyRecipesList> {
-  // TODO: Update recipes declaration
+  // TODO 1
   List<String> recipes = [];
 
-  // TODO: Remove initState()
+  // TODO 2
   @override
   void initState() {
     super.initState();
@@ -28,71 +29,68 @@ class _MyRecipesListState extends State<MyRecipesList> {
   }
 
   Widget _buildRecipeList(BuildContext context) {
-    // TODO: Add Consumer
+    // TODO 3
     return ListView.builder(
-      itemCount: recipes.length,
-      itemBuilder: (BuildContext context, int index) {
-        // TODO: Add recipe definition
-        return SizedBox(
-          height: 100,
-          child: Slidable(
-            startActionPane: ActionPane(
-              motion: const DrawerMotion(),
-              extentRatio: 0.25,
-              children: [
-                SlidableAction(
-                  label: 'Delete',
-                  backgroundColor: Colors.transparent,
-                  foregroundColor: Colors.black,
-                  icon: Icons.delete,
-                  // TODO: Update first onPressed
-                  onPressed: (context) {},
-                ),
-              ],
-            ),
-            endActionPane: ActionPane(
-              motion: const DrawerMotion(),
-              extentRatio: 0.25,
-              children: [
-                SlidableAction(
-                  label: 'Delete',
-                  backgroundColor: Colors.transparent,
-                  foregroundColor: Colors.black,
-                  icon: Icons.delete,
-                  // TODO: Update second onPressed
-                  onPressed: (context) {},
-                ),
-              ],
-            ),
-            child: Card(
-              elevation: 1.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+        itemCount: recipes.length,
+        itemBuilder: (BuildContext context, int index) {
+          // TODO 4
+          return SizedBox(
+            height: 100,
+            child: Slidable(
+              startActionPane: ActionPane(
+                motion: const DrawerMotion(),
+                extentRatio: 0.25,
+                children: [
+                  SlidableAction(
+                    label: 'Delete',
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.black,
+                    icon: Icons.delete,
+                    // TODO 7
+                    onPressed: (context) {},
+                  ),
+                ],
               ),
-              color: Colors.white,
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    // TODO: Replace with image from recipe
-                    leading: Image.asset(
-                      'assets/images/pizza_w700.png',
-                      height: 200,
-                      width: 200,
+              endActionPane: ActionPane(
+                motion: const DrawerMotion(),
+                extentRatio: 0.25,
+                children: [
+                  SlidableAction(
+                    label: 'Delete',
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.black,
+                    icon: Icons.delete,
+                    // TODO 8
+                    onPressed: (context) {},
+                  ),
+                ],
+              ),
+              child: Card(
+                elevation: 1.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: Colors.white,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: CachedNetworkImage(
+                          // TODO 5
+                          imageUrl: '',
+                          height: 120,
+                          width: 60,
+                          fit: BoxFit.cover),
+                      // TODO 6
+                      title: const Text('Chicken Vesuvio'),
                     ),
-                    // TODO: Replace title hardcoding
-                    title: const Text('Chicken Vesuvio'),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      },
-    );
-    // TODO: Add final brace and parenthesis
+          );
+        });
+    // TODO 9
   }
-
-// TODO: Add deleteRecipe() here
 }

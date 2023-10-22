@@ -1,4 +1,5 @@
 import '../network/recipe_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 Widget recipeCard(APIRecipe recipe) {
@@ -11,15 +12,10 @@ Widget recipeCard(APIRecipe recipe) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
-          // TODO: Replace with image from recipe
-          child: Image.asset(
-            'assets/images/pizza_w700.png',
-            height: 200,
-            width: 200,
-          ),
-        ),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
+            child: CachedNetworkImage(
+                imageUrl: recipe.image, height: 210, fit: BoxFit.fill)),
         const SizedBox(
           height: 12.0,
         ),
