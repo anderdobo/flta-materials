@@ -15,7 +15,7 @@ import '../../network/model_response.dart';
 import 'dart:collection';
 
 class RecipeList extends StatefulWidget {
-  const RecipeList({Key? key}) : super(key: key);
+  const RecipeList({super.key});
 
   @override
   State createState() => _RecipeListState();
