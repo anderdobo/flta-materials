@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../network/recipe_model.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +17,10 @@ Widget recipeCard(APIRecipe recipe) {
             topLeft: Radius.circular(6.0),
             topRight: Radius.circular(6.0),
           ),
-          // TODO: Replace with image from recipe
-          child: Image.asset(
-            'assets/images/pizza_w700.png',
-            height: 200,
-            width: 200,
+          child: CachedNetworkImage(
+            imageUrl: recipe.image,
+            height: 210,
+            fit: BoxFit.fill,
           ),
         ),
         const SizedBox(
